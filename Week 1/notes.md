@@ -23,4 +23,14 @@ model.fit(X,Y, epochs = 100)
    1. Switch
 
 - Choose activation function on basis of type of output label. For hidden layers, ReLU is prominent.
+## MultiClass Classification
+- Example  
+<p align = "center">
+<img width="471" alt="image" src="https://github.com/atul2602/Advanced-Learning-Algorithms/assets/61497490/260fb64b-f388-4397-94fb-5c2621d62f30">
+</p>
+
+## Softmax Regression
+$$z_i = \vec{w_i}.\vec{x} + b_i$$
+$$a_i = \frac{e^{z_i}}{\sum_{j=1}^{n}e^{z^i}}$$
+
 
