@@ -33,4 +33,20 @@ model.fit(X,Y, epochs = 100)
 $$z_i = \vec{w_i}.\vec{x} + b_i$$
 $$a_i = \frac{e^{z_i}}{\sum_{j=1}^{n}e^{z^i}}$$
 
+- Optimised Implementation for RoundOff errors: 
+-   Skip calculation of intermediate $a_i$ 
+-   Makes the loss function directly $-\log g\left(z \right)$
+-   Final layer becomes linear, followed by one additional code line.
+```python
+...
+...
+Dense(units = 10, activation = 'linear')])
+
+model.compile(loss=SparseCategoricalCrossEntropy(from_logits = True)
+#note that logits argument is new.
+
+logits = model(X)  #output is linear
+f_x = tf.nn.softmax(logits) #make it softmax
+```
+
 
