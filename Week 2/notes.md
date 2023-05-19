@@ -51,11 +51,12 @@ f_x = tf.nn.softmax(logits) #make it softmax
 ---
 ## Advanced Optimisation
 #### ADAM Algorithm (Adaptive Moment Estimation)
-    - Adjust $\alpha$ automatically in gradient descent, based on direction of movement 
-    - Different $\alpha_i$ for different parameter $w_i$
-    ```python 
+   - Adjust $\alpha$ automatically in gradient descent, based on direction of movement 
+   - Different $\alpha_i$ for different parameter $w_i$
+    
+```python
     model.compile(optimizer = tf.keras.optimizers.Adam(learning_rate = 1e-3), loss = ...)
-    ```
+```
 ## Convolutional Layers - CNN
 - Each neuron in the layer looks at _a part_ of the input only.
 - Advantages
