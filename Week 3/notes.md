@@ -93,4 +93,81 @@ layer_1 = Dense(units = 25, activation = "relu", kernel_regularizer = L2(0.01)) 
 layer_2 = ...
 model = Sequential([layer_1, layer_2])
 ```
+## Iterative Loop of ML development
+<p align = "center">
+<img width="413" alt="image" src="https://github.com/atul2602/Advanced-Learning-Algorithms/assets/61497490/6812c8c1-494a-499e-8285-78d478dc4798">
+</p> 
 
+### Error Analysis
+- The thing to check after Bias and Variance
+- Eg, Email spam detection:
+    - Look at misclassified examples (ramdom sample of ~100 misclassified emails)
+    - Categorise them into common groups like Pharma, mispelled, fishy routing
+    - Work on top groups eg, add more relevant data, ...
+    - Best way is to combine bias/variance analysis with error analysis. Eg, if BV analysis tells to add more features, you now know with features are relevant. 
+- Challenges: Difficult to analyse if even humans arent good at that task
+
+### Tips for adding data
+- Add data for types indicated by error analysis
+- Data Augmentation: Create new training example from existing ones. Changes should be representative of real life
+    - change orientation/size/contrast of image/ random warping
+    - add different noises to audio clips
+- Data Synthesis, usually for CV tasks
+> Data Centric approach is also an efficient way as model-centric appproach
+
+### Transfer Learning
+- Learning using data from a different task
+- Useful when data is less
+- Eg. Transfer learning from object classification to image classfication
+    - Train an object classification model : _Supervised Pretraining_ 
+    - replace last layer with 0-9 digit classification layer. Use all other layers as it is
+    - Train the model : _Fine Tuning_
+- We can use readymade NNs for step 1 $\rightarrow$ faster development
+- note: type of inputs must be same in both steps, like image-image.
+- Why does this work?
+<p align = "center">
+<img width="230" alt="image" src="https://github.com/atul2602/Advanced-Learning-Algorithms/assets/61497490/e1316506-85a2-48a4-8295-a27cd98e1b3e">
+</p>
+
+## Full Cycle of ML Project
+1. Scope of the project : Define the project
+2. Data: Define and collect data
+3. Train Model: Train, analyse error, develop interatively  (may go back to 2.)
+4. Deploy in production : Monitor performance and maintain  (may go back to 3., 2.)
+### Deployment (MLOps)
+- deploy on a inference server, get API calls from apps, make prediction
+- needs software engineering 
+
+## Ethics in ML
+### Bias in society
+### Adverse Usecases (toxic/deep fake)
+#### Tips:
+- Get a diverse team to think on what all can go wrong
+- Carry literature search on industry laws/standards
+- audit the systems to possible harm _before deployment_
+- Develop mitigation system for possible harms in deployment
+
+## Skewed Datasets
+- Checking accuracy is difficult in such applications, eg. detect rare disease
+- New error metric: **Precision/Recall**
+    - Use 2\*2 matrix to compute true +ve, true -ve, ...
+    - $$Precision = \frac{True Positives}{True Positives + False Positives}$$
+    - $$Recall = \frac{True Positives}{Actual Positives} = \frac{True Positives}{True Positives + False Negatives}$$
+    - Both should be decently high (definetely $\ne 0$ )
+- TradeOff
+    - Precision means "if a person is diagnosed +ve, a high chance that they truly are"
+    - Recall means "if a person is truly +ve, high chance that they are diagnosed +ve"
+    - Increase 0.5 threshold in Logistic Regression : Increases Precision, decreases recall
+    - Decrease 0.5 threshold in logistic regression : Decreases precision, increases recall
+ - Plot to pick threshold
+ <p align = "center">
+ <img width="167" alt="image" src="https://github.com/atul2602/Advanced-Learning-Algorithms/assets/61497490/df1e8cf0-44a8-4735-afba-6c5c5e41572e">
+ </p>
+ 
+ - **F1 Score**
+     - To compare precision/recall all together
+     - Closer to lower value
+     - $$F1 score = \frac{2.P.R}{P+R}$$
+
+ 
+    
