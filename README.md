@@ -1,2 +1,2 @@
 # Advanced-Learning-Algorithms
-Content related to Advanced Learning Algorithms taught by Andrew NG
+My notes and assignments from Coursera and Stanford ML course taught by Prof. Andrew N.G.
