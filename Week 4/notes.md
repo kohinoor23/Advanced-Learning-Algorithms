@@ -34,8 +34,44 @@ Start with all the examples at the root $\rightarrow$ Calculate I.G. for all pos
 
 #### Continuous Valued features
 Eg. Weight of cats/dogs
-Choose a cutoff for the features like $Weight > x$, by trying values near Mean and select one with best Information Gain.
+Choose a cutoff for the features like $Weight > x$, by trying values at consecutive sorted mid-point and select one with best Information Gain.
 
 ### Generalization to Regression Trees
 Eg. Predict weight from features : Create decision tree on features, and define weight for a leaf as average of examples in the leaf.
 - Choosing a split : Replace $H$ in classification to `Variance` of the predicted output feature
+ 
+## Tree Ensembles
+- Need: Trees are highly sensitive to small changes in data
+- Prediction : Voting by trees
+- Build : **Sample with replacement** `n` examples from the set of examples, `m` times to create m bagged decision trees
+#### Random Forest Algorithm
+- For b = 1 to B (64-100):
+    - Use sampling with replacement to create new training set of size `m`
+    - Train a decision tree on the new dataset
+- **Randomizing the feature choice**: At each split, choose subset k of n available features and take the k features ahead, $k \approx \sqrt{n}$ 
+- Testing : Take votes from all trees in ensemble (forest)
+
+### XG Boost : Idea of delicate practice
+- While sampling with replacement, skew the probability towards examples missclassified by previous trees
+- eXtreme Gradient Boosting
+    - Open-source
+    - Fast, efficient
+    - Good default splitting, stopping criteria
+    - Built in regularization
+    - good for comps.
+
+```python
+from xgboost import XGBClassifier
+model = XGBClassifier()
+model.fit(X_train, y_train)
+y_pred = model.predict(X_test)
+```
+### When to use Decision Trees (vs NNs)?
+- Work well on tabular(structured) data, spreadsheet
+- Not recommended for unstructured data: Images, videos, audio, text   (NNs recommended)
+- Fast (training), whereas NNs are slow
+- Small trees are human-interpretable
+- NNs work with transfer learning, and easier to string together multiple NNs
+
+
+
